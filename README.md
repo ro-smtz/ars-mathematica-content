@@ -3,7 +3,7 @@
 > *Non docentibus, sed discentibus.*  
 > *Non eruditis, sed erudiendis.*
 
-This repository is the content library behind the [Ars Mathematica](https://ro-smtz.github.io/ars-mathematica/) project — a collection of [TikZ](https://tikz.dev) and [PGFPlots](https://tikz.dev/pgfplots/) source files, LaTeX templates, figure code, and reading resources produced since 2019.
+This repository is the content library behind the [Ars Mathematica](https://ro-smtz.github.io/ars-mathematica/) project — a collection of [TikZ](https://tikz.dev) and [PGFPlots](https://tikz.dev/pgfplots/) source files, LaTeX templates, figure code, and reading resources.
 
 Everything here is meant to be downloaded, compiled, studied, and modified. We all learn by imitation.
 
