@@ -1,22 +1,42 @@
-# Ars Mathematica
+# Ars Mathematica — Content
 
-> *Non docentibus, sed discentibus; Non eruditis, sed erudiendis.*
-> 
+> *Non docentibus, sed discentibus.*  
+> *Non eruditis, sed erudiendis.*
 
-## Introducción
+This repository is the content library behind the [Ars Mathematica](https://ro-smtz.github.io/ars-mathematica/) project — a collection of TikZ and PGFPlots source files, LaTeX templates, figure code, and reading resources produced since 2019.
 
-¡Hola a todos! Bienvenidos al repositorio oficial del proyecto Ars Mathematica, un proyecto dedicado a la divulgación de física, matemáticas y química en español a través de gráficas, diagramas y otros recursos visuales. 
+Everything here is meant to be downloaded, compiled, studied, and modified. We all learn by imitation.
 
-Estoy muy contento de poder compartir con ustedes un poco de lo que he logrado con TikZ en los últimos meses. Aquí podrán encontrar el código comentado de algunos de mis dibujos favoritos así como el correspondiente PDF. 
+---
 
-Todos aprendemos por imitación, así que los invito a descargar los códigos, compilarlos, estudiarlos y modificarlos para ver cómo funciona cada comando. 
+## Structure
 
-¡Espero que los disfruten! 
+```text
+figures/          # Standalone TikZ and PGFPlots figures (with compiled PDF)
+tutorials/        # Source files accompanying website tutorials
+templates/        # Complete LaTeX templates (article, beamer, poster)
+reading/          # Book recommendations and curated reading lists
+```
 
-Rodrigo.
+Each subfolder contains a `README.md` describing its contents and compilation instructions where relevant.
 
+---
 
-| Instagram: | https://www.instagram.com/ars_mathematica/ |
-| --- | --- |
-| e-mail: | rodrigo.smtz@icloud.com |
-| WhatsApp: | https://wa.me/message/WVD4J6ZO2VM5O1 |
+## Compilation
+
+Figures are written for XeLaTeX. To compile a standalone figure:
+
+```bash
+xelatex figure.tex
+```
+
+Dependencies vary by file but commonly include: `tikz`, `pgfplots`, `siunitx`, `physics`, `fontspec`.
+
+---
+
+## Related
+
+- **Website** → [ro-smtz.github.io/ars-mathematica](https://ro-smtz.github.io/ars-mathematica/) — courses, tutorials, and figure gallery
+- **Instagram** → [@ars_mathematica](https://www.instagram.com/ars_mathematica/) — 70K+ followers
+- **Author** → [Rodrigo Sánchez-Martínez](https://orcid.org/0000-0002-5713-3053)
+- **Contact** → rodrigo.smtz@icloud.com
