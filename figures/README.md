@@ -14,8 +14,17 @@ figures/
 
 ## Compilation
 
+Figures are written for XeLaTeX, which is required to load the [New Computer Modern](https://ctan.org/pkg/newcomputermodern?lang=en) font via `fontspec` and `fontsetup`:
+
 ```bash
 xelatex figure.tex
 ```
 
-Common dependencies: `tikz`, `pgfplots`, `siunitx`, `physics`, `fontspec`.
+They can also be compiled with pdfLaTeX without any other changes — just comment out the two font packages at the top of the file:
+
+```tex
+% \usepackage{fontspec}
+% \usepackage[default]{fontsetup}
+```
+
+Common dependencies: `tikz`, `pgfplots`, `siunitx`, `physics`.
