@@ -3,7 +3,7 @@
 > *Non docentibus, sed discentibus.*  
 > *Non eruditis, sed erudiendis.*
 
-This repository is the content library behind the [Ars Mathematica](https://ro-smtz.github.io/ars-mathematica/) project — a collection of TikZ and PGFPlots source files, LaTeX templates, figure code, and reading resources produced since 2019.
+This repository is the content library behind the [Ars Mathematica](https://ro-smtz.github.io/ars-mathematica/) project — a collection of [TikZ](https://tikz.dev) and [PGFPlots](https://tikz.dev/pgfplots/) source files, LaTeX templates, figure code, and reading resources produced since 2019.
 
 Everything here is meant to be downloaded, compiled, studied, and modified. We all learn by imitation.
 
@@ -24,7 +24,7 @@ Each subfolder contains a `README.md` describing its contents and compilation in
 
 ## Compilation
 
-Figures are written for XeLaTeX, which is required to load the New Computer Modern font via `fontspec` and `fontsetup`:
+Figures are written for XeLaTeX, which is required to load the [New Computer Modern](https://ctan.org/pkg/newcomputermodern?lang=en) font via `fontspec` and `fontsetup`:
 
 ```bash
 xelatex figure.tex
