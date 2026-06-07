@@ -24,13 +24,20 @@ Each subfolder contains a `README.md` describing its contents and compilation in
 
 ## Compilation
 
-Figures are written for XeLaTeX. To compile a standalone figure:
+Figures are written for XeLaTeX, which is required to load the New Computer Modern font via `fontspec` and `fontsetup`:
 
 ```bash
 xelatex figure.tex
 ```
 
-Dependencies vary by file but commonly include: `tikz`, `pgfplots`, `siunitx`, `physics`, `fontspec`.
+They can also be compiled with pdfLaTeX without any other changes — just comment out the two font packages at the top of the file:
+
+```tex
+% \usepackage{fontspec}
+% \usepackage[default]{fontsetup}
+```
+
+Dependencies vary by file but commonly include: `tikz`, `pgfplots`, `siunitx`, `physics`.
 
 ---
 
