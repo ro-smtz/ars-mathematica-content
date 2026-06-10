@@ -1,0 +1,147 @@
+\documentclass[border = 1mm]{standalone}
+% Caption:
+% Compton Scattering: gamma + e -> gamma + e.
+% Reproduction from Fig. 6.12 of Halzen & Martin "Quarks
+% and Leptons: An Introductory Course in Modern Particle
+% Physics".
+%
+% Autor:
+% R. Sánchez-Martínez, Jun 2026.
+%
+% Figure published at:
+% instagram.com/ars_mathematica
+%
+% Generated with TikZ and compiled preferable with XeLaTeX.
+
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+%
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{slashed}
+%
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{
+	babel,
+	math,calc
+}
+\usepackage{tikz-feynman}
+
+\usepackage{fontspec}
+\usepackage[default]{fontsetup}
+
+\begin{document}
+% -- Figure
+% Key concepts:
+%	— \draw[style] (a) to (b);
+%	  draws a line from (a) to (b) with a specific
+%     graphic [style].
+%   — \draw (a) to node {text} (b);
+%	  adds a node containing {text} in the midpoint
+%     of (a) and (b).
+%   — ... node[anchor = base] {text} ...
+%     indicates that the coordinate specification will
+%     refer to the node's baseline midpoint, useful
+%     for aligning nodes of different heights.
+\begin{tikzpicture}[
+	line join = round,
+	line cap  = round,
+	line width = 0.62pt,
+]
+
+	% Main box 
+	\node[
+		inner sep = 0pt,
+		minimum width  = 6cm,
+		minimum height = 8cm,
+		name = N,
+	] at (0,0) {};
+	
+	% Clipping mask, it deletes everything outside the box (N),
+	% useful for obtaining well-defined-size drawings
+	\clip (N.north west) rectangle (N.south east);
+
+	% Geometric definitions
+	\tikzmath{
+		\d = 2.5;
+		\l = 1.4; \th = 28;
+	}
+
+	% Labels and equations
+	\node[align = center] (title)
+		at (0,3)
+		{Dispersión Compton};
+		
+	\node[inner sep = 1mm, draw = gray!75, yshift = -3mm]
+		at (title.south)
+		{$\gamma + e^- \to \gamma + e^-$};
+		
+	\node[anchor = base, font = \small]
+		at (0,-2.7)
+		{$
+			-e^2\bar{u}(p'){\epsilon'_\nu}^{*}\gamma^\nu
+			\dfrac{\slashed{p}+\slashed{k}+m}{(p + k)^2 - m^2}
+			\gamma^\mu\epsilon_\mu u(p)
+		$};
+
+	% ---
+	\begin{scope}[
+	% use shift to center the picture or placing it
+	% wherever you wan
+		shift = {(-0.5*\d,-0.2)},
+	]
+	
+	% Main drawing using TikZ-Feynman macros
+	\begin{feynman}
+	
+		% coordinates of the vertices
+		\coordinate (v1) at (0,0);
+		\coordinate (v2) at (\d,0);
+		
+		\coordinate[shift = {(-90-\th:\l)}] (p) at (v1);
+		\coordinate[shift = {(+90+\th:\l)}] (k) at (v1);
+		
+		\coordinate[shift = {(-90+\th:\l)}] (pp) at (v2);
+		\coordinate[shift = {(+90-\th:\l)}] (kk) at (v2);
+		
+		% main lines drawings
+		\draw[fermion]
+			(v1)
+			to
+			node[anchor = base, shift = {(0,0.6)}, font = \small]
+				{$\displaystyle
+					\frac{i\sum u\bar{u}}{(p + k)^2 - m^2}
+				$}
+			(v2);
+		
+		\draw[fermion]
+			(p) node[anchor = base, shift = {(-0.05,-0.3)}] {$p$} 
+			to node[anchor = base, shift = {(-0.3,0)}] {$u$} (v1);
+		\draw[fermion]
+			(v2) to node[anchor = base, shift = {(+0.3,0)}] {$\bar{u}$} (pp)
+			node[anchor = base, shift = {(+0.10,-0.3)}] {$p'$};
+		\draw[photon]
+			(k)
+			node[anchor = base, shift = {(0,+0.15)}] {$k$} 
+			to
+			node[anchor = base, shift = {(-0.35,0)}] {$\epsilon_\mu$}
+			(v1);
+		\draw[photon]
+			(v2)
+			to
+			node[anchor = base, shift = {(+0.45,0)}] {${\epsilon'_\nu}^*$}
+			(kk)
+			node[anchor = base, shift = {(+0.15,+0.15)}] {$k'$};
+		
+		% dots
+		\fill (v1) circle (1.2pt);
+		\fill (v2) circle (1.2pt);
+		
+	\end{feynman}
+	\end{scope}
+	% ---
+	
+\end{tikzpicture}
+\end{document}
