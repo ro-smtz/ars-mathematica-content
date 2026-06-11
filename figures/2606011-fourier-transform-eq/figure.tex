@@ -1,0 +1,103 @@
+\documentclass[border = 1mm]{standalone}
+% Caption:
+% — Fourier Transform.
+% Mathematical definition using mathematics convention.
+%
+% Autor:
+% R. Sánchez-Martínez, Jun 2026.
+%
+% Figure published at:
+% instagram.com/ars_mathematica
+% Code available at:
+% github.com/ro-smtz/ars-mathematica-content/tree/main/figures
+%
+% Generated with TikZ and compiled preferable with XeLaTeX.
+
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+%
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{physics}
+%
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{
+	babel,
+	math,calc
+}
+\usepackage{tikz-feynman}
+
+\usepackage{fontspec}
+\usepackage[default]{fontsetup}
+
+\begin{document}
+% -- Figure
+% Key concepts:
+%	— \draw[style] (a) to (b);
+%	  draws a line from (a) to (b) with a specific
+%     graphic [style].
+%   — \draw (a) to node {text} (b);
+%	  adds a node containing {text} in the midpoint
+%     of (a) and (b).
+%   — ... node[anchor = base] {text} ...
+%     indicates that the coordinate specification will
+%     refer to the node's baseline midpoint, useful
+%     for aligning nodes of different heights.
+\begin{tikzpicture}[
+	line join = round,
+	line cap  = round,
+	line width = 0.62pt,
+]
+
+	% Main box 
+	\node[
+		inner sep = 0pt,
+		minimum width  = 5cm,
+		minimum height = 5cm,
+		name = N,
+	] at (0,0) {};
+	
+	% Clipping mask, it deletes everything outside the box (N),
+	% useful for obtaining well-defined-size drawings
+	\clip (N.north west) rectangle (N.south east);
+
+	% ---
+	\begin{scope}[
+	% use shift to center the picture or placing it
+	% wherever you want
+		shift = {(0,0)},
+	]
+		
+		% main equation
+		\node at (0,0.6) {
+		$\displaystyle
+		\begin{aligned}
+			\mathcal{F}\big[f(t)\big]
+			&= \int\limits_{-\infty}^{\infty}\!
+			f(t)\, e^{2\pi\mathrm{i}\,\omega t}
+			\dd{t} \\
+			&= F(\omega)
+		\end{aligned}
+		$
+		};
+		
+		%
+		\node at (0,-1.2) {
+		$\displaystyle
+			f\;
+			\overset{
+				\text{\small$\mathcal{F}$}
+			}{
+				\textcolor{gray!75}{\Longleftrightarrow}
+			}
+			\; F
+		$
+		};
+	
+	\end{scope}
+	% ---
+	
+\end{tikzpicture}
+\end{document}
