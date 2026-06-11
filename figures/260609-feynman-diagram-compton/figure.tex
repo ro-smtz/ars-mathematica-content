@@ -55,7 +55,7 @@
 	\node[
 		inner sep = 0pt,
 		minimum width  = 6cm,
-		minimum height = 8cm,
+		minimum height = 6cm,
 		name = N,
 	] at (0,0) {};
 	
@@ -69,17 +69,13 @@
 		\l = 1.4; \th = 28;
 	}
 
-	% Labels and equations
-	\node[align = center] (title)
-		at (0,3)
-		{Dispersión Compton};
-		
+	% Labels and equations		
 	\node[inner sep = 1mm, draw = gray!75, yshift = -3mm]
-		at (title.south)
+		at (0,2.7)
 		{$\gamma + e^- \to \gamma + e^-$};
 		
 	\node[anchor = base, font = \small]
-		at (0,-2.7)
+		at (0,-2.5)
 		{$
 			-e^2\bar{u}(p'){\epsilon'_\nu}^{*}\gamma^\nu
 			\dfrac{\slashed{p}+\slashed{k}+m}{(p + k)^2 - m^2}
@@ -90,7 +86,7 @@
 	\begin{scope}[
 	% use shift to center the picture or placing it
 	% wherever you wan
-		shift = {(-0.5*\d,-0.2)},
+		shift = {(-0.5*\d,0)},
 	]
 	
 	% Main drawing using TikZ-Feynman macros
