@@ -1,0 +1,220 @@
+\documentclass[border = 1mm]{standalone}
+% Caption:
+% — Torus.
+% Parametric surface defined by the points in space (x,y,z)
+% such that
+% 	x = (R + r cos(v)) * cos(u)
+%	y = (R + r cos(v)) * sin(u)
+%	z = r sin(v)
+% for R and r positive numbers, and u,v in [0, 2*pi).
+% Equivalently, the torus is the implicit surface
+%
+%   (sqrt(x^2+y^2)-R)^2 + z^2 = r^2
+%
+% obtained by revolving a circle of radius r centered
+% at distance R from the z-axis.
+%
+% Autor:
+% R. Sánchez-Martínez, Jun 2026.
+%
+% Figure published at:
+% instagram.com/ars_mathematica
+% Code available at:
+% github.com/ro-smtz/ars-mathematica-content/tree/main/figures
+%
+% Generated with TikZ and compiled preferable with XeLaTeX.
+
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{
+	babel,
+	math,calc
+}
+\usepackage{pgfplots}
+\pgfplotsset{compat = 1.18}
+
+\usepackage{fontspec}
+\usepackage[default]{fontsetup}
+
+\begin{document}
+% -- Figure
+\begin{tikzpicture}[
+	line join = round,
+	line cap  = round,
+	line width = 0.62pt,
+]
+
+	% Main box 
+	\node[
+		inner sep = 0pt,
+		minimum width  = 6.2cm,
+		minimum height = 6.2cm,
+		name = N,
+	] at (0,0) {};
+	
+	% Clipping mask, it deletes everything outside the box (N),
+	% useful for obtaining well-defined-size drawings
+	\clip (N.north west) rectangle (N.south east);
+
+	% Geometric parameters:
+	%   R : major radius
+	%       Distance from the center of the torus
+	%       to the center of the tube.
+	%
+	%   r : minor radius
+	%       Radius of the tube itself.
+	\tikzmath{
+		\R = 1.4;
+		\r = 0.8;
+	};
+
+	% ---
+	% Main drawing
+	\begin{axis}[
+		% position
+		at = {(N)},
+		anchor = center,
+		shift = {(2mm,1mm)},
+		% size
+		width = 7cm,
+		view = {56}{20},
+		unit vector ratio = 1 1 1,
+		%
+		xmin = -2, xmax = 2,
+  		ymin = -2, ymax = 2, 
+  		zmin = -1.5, zmax = 2,
+  		%
+  		enlarge x limits,
+  		enlarge y limits,
+  		%
+  		grid,
+		% 
+		xlabel = {$x$},
+ 		ylabel = {$y$},
+ 		zlabel = {$z$},
+ 		%
+ 		xticklabels = \empty,
+  		yticklabels = \empty,
+  		zticklabels = \empty,
+ 		%
+ 		trig format plots = rad,
+ 		% Two-point grayscale colormap used to shade the surface
+ 		%
+		% The first entry assigns white (1) to the beginning
+		% of the colormap, while the second assigns dark gray
+		% (0.22) to its end — 0 corresponds to black.
+		% PGFPlots interpolates smoothly between both values.
+ 		colormap = {blackwhite}{
+			gray(0cm) = (1);
+			gray(1cm) = (0.22)
+		},
+	]
+	
+	% The torus is plotted in two separate patches.
+	%
+	% Splitting the surface into upper and lower halves
+	% improves visibility of the interior and allows the
+	% generatrix circle to remain visible through the
+	% transparent surface.
+	
+		% lower half surface
+		\addplot3[
+			surf,
+			z buffer = sort,
+			domain = 0*pi:1.5*pi, samples = 20,
+			domain y = 1*pi:2*pi, samples y = 10,
+			opacity = 0.75,
+		]
+		(
+			{(\R + \r*cos(y))*cos(x)},
+			{(\R + \r*cos(y))*sin(x)},
+			{\r*sin(y)}
+		);
+		\addlegendentry{$S$}
+  		
+  		% inner circle, generatrix of the torus
+  		\addplot3[
+			semithick, black,
+  			domain = 0:2*pi, 
+  			samples = 120, samples y = 0,
+  		]
+  		(
+  			{\R*cos(x)},
+  			{\R*sin(x)},
+  			{0}	
+  		);
+  		
+  		% ppper half surface
+		\addplot3[
+			surf,
+			z buffer = sort,
+			domain = 0*pi:1.5*pi, samples = 20,
+			domain y = 0*pi:1*pi, samples y = 10,
+			opacity = 0.75,
+		]
+		(
+			{(\R + \r*cos(y))*cos(x)},
+			{(\R + \r*cos(y))*sin(x)},
+			{\r*sin(y)}
+		);
+  		
+  		% generating circle (meridian section)
+  		\addplot3[
+			semithick, black,
+  			y domain = 0:2*pi, 
+  			samples = 0, samples y = 120,
+  		]
+  		(
+  			{(\R + \r*cos(y))*cos(1.5*pi)},
+  			{(\R + \r*cos(y))*sin(1.5*pi)},
+  			{\r*sin(y)}	
+  		);
+
+		% Auxiliary points used to construct dimension-like
+		% annotations for the major radius R and minor radius r.
+		\coordinate (O) at (axis cs: 0, 0    ,0);
+		\coordinate (P1) at (axis cs: 0,-\R   ,0);
+		\coordinate (P2) at (axis cs: 0,-\R-\r,0);
+		
+		% (axis direction cs: x,y,z) shifts points along the local
+		% coordinate directions of the 3D axis rather than
+		% in the surrounding TikZ canvas coordinates.
+		\path (O)++(axis direction cs: 0,0,1.7) coordinate (O-up);
+		\path (P1)++(axis direction cs: 0,0,1.7) coordinate (P1-up);
+		\path (P2)++(axis direction cs: 0,0,1.7) coordinate (P2-up);
+			
+	\end{axis}
+	% ---
+	
+	% radii annotations
+	\draw[gray!75, shorten <= 1mm]
+		(O) to
+			coordinate[pos = 0.9] (O-aux)
+		(O-up);
+	\draw[gray!75, shorten <= 1mm]
+		(P1) to
+			coordinate[pos = 0.9] (P1-aux)
+		(P1-up);
+	\draw[gray!75, shorten <= 2mm]
+		(P2) to
+			coordinate[pos = 0.9] (P2-aux)
+		(P2-up);
+		
+	\draw[gray!75]
+		(P2-aux) to 
+			node[shift = {(0,0.25)}, black] {$r$}
+		(P1-aux) to
+			node[shift = {(-0.05,0.25)}, black] {$R$}
+		(O-aux);
+		
+	\fill (O) circle (1.1pt);
+	\fill (P1) circle (1.1pt);
+	
+\end{tikzpicture}
+\end{document}

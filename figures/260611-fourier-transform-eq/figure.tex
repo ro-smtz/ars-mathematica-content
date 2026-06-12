@@ -23,28 +23,12 @@
 %
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{
-	babel,
-	math,calc
-}
-\usepackage{tikz-feynman}
 
 \usepackage{fontspec}
 \usepackage[default]{fontsetup}
 
 \begin{document}
 % -- Figure
-% Key concepts:
-%	— \draw[style] (a) to (b);
-%	  draws a line from (a) to (b) with a specific
-%     graphic [style].
-%   — \draw (a) to node {text} (b);
-%	  adds a node containing {text} in the midpoint
-%     of (a) and (b).
-%   — ... node[anchor = base] {text} ...
-%     indicates that the coordinate specification will
-%     refer to the node's baseline midpoint, useful
-%     for aligning nodes of different heights.
 \begin{tikzpicture}[
 	line join = round,
 	line cap  = round,
